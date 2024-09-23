@@ -1,6 +1,5 @@
 package com.airlines.catalog.controller;
 
-import java.nio.channels.ScatteringByteChannel;
 import java.util.List;
 import com.airlines.catalog.dto.FlightDetails;
 import com.airlines.catalog.exception.AuthenticationException;
@@ -10,7 +9,7 @@ import com.airlines.catalog.service.FlightDetailsService;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.interfaces.DecodedJWT;
+// import com.auth0.jwt.interfaces.DecodedJWT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -72,7 +71,7 @@ public class FlightReservation {
                     + "/.well-known/jwks.json";
             Algorithm algorithm = Algorithm.RSA256(new AwsCognitoRSAKeyProvider(cognitoWellKnownUrl));
             JWTVerifier verifier = JWT.require(algorithm).build();
-            DecodedJWT decodedJWT = verifier.verify(token);
+            verifier.verify(token);
             return true;
         } catch (Exception e) {
             throw new AuthenticationException(e);
@@ -88,6 +87,7 @@ public class FlightReservation {
      * Rest controller returns a ResponseEntity of string.
      */
     @GetMapping("/flight")
+    @SuppressWarnings("unchecked")
     public ResponseEntity<String> getFlightDetails(@RequestParam("departureDate") String departureDate,
             @RequestParam("departureAirportCode") String departureAirportCode,
             @RequestParam("arrivalAirportCode") String arrivalAirportCode,
@@ -129,6 +129,7 @@ public class FlightReservation {
      * Authorization token is passed in the header of the request.
      */
     @PostMapping("/reserve")
+    @SuppressWarnings("unchecked")
     public ResponseEntity<String> bookFlight(@Valid @RequestBody ReservationDetails reservationDetails,
             @RequestHeader("Authorization") String authorization)
             throws FlightNotFoundException, RequestedSeatsNotAvailable {

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 // Create interface ReservationRepository that extends JpaRepository.
 // Add a method to save reservation.
 @Repository
+@SuppressWarnings("unchecked")
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
 
     Reservation save(Reservation reservation);

@@ -13,7 +13,7 @@ Exception message returned should be "No flights found for the flight id " and a
 public class FlightNotFoundException extends RuntimeException {
     private ResponseEntity<String> responseEntity;
 
-    public FlightNotFoundException(String flightId) {
+    public FlightNotFoundException(int flightId) {
         responseEntity = new ResponseEntity<>("No flights found for the flight id " + flightId, HttpStatus.BAD_REQUEST);
     }
 }

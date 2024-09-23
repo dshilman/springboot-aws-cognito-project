@@ -1,13 +1,11 @@
 package com.airlines.catalog.test;
 
 import com.airlines.catalog.FlightBookingApplication;
-import org.springframework.test.context.junit4.SpringRunner;
 import com.airlines.catalog.model.Passenger;
 import com.airlines.catalog.repository.PassengerRepository;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
 /* Create Junit test cases for PassengerRepository using

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 /* create jpa repository interface PassengerRepository.
 Add a method to save Passenger. */
 @Repository
+@SuppressWarnings("unchecked")
 public interface PassengerRepository extends JpaRepository<Passenger, Integer> {
     Passenger save(Passenger passenger);
 }
